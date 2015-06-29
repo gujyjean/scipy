@@ -223,9 +223,9 @@ def differential_evolution(func, bounds, args=(),
     Example 1: MPI
     run this with mpirun -np 2 python testmpi.py
     
-    >>> from MPIpool import MPIpool
+    >>> from scipy.optimize.MPIpool import MPIpool
     >>> from scipy.optimize import rosen
-    >>> import differential_evolution as de
+    >>> from scipy.optimize import differential_evolution as de
     >>> bounds = [(0,2), (0, 2), (0,2)]
     >>> pool = MPIpool()
     >>> 
@@ -241,9 +241,9 @@ def differential_evolution(func, bounds, args=(),
     
         Example 2: joblib pool
 
-    >>> from JLpool import JLpool
+    >>> from scipy.optimize.JLpool import JLpool
     >>> from scipy.optimize import rosen
-    >>> import differential_evolution as de
+    >>> from scipy.optimize import differential_evolution as de
     >>> bounds = [(0,2), (0, 2), (0,2)]
     >>> #if n_jobs is not specified -- sprawns cpu_count() processes by default
     >>> pool = JLpool()
@@ -507,8 +507,7 @@ class DifferentialEvolutionSolver(object):
         if self.disp:
             print("differential_evolution step init: f(x)= %g"
                   % (self.population_energies[0]))
-            print " at x= ",
-            print self._scale_parameters(self.population[0])
+            print(self._scale_parameters(self.population[0]))
 
 
         if warning_flag:
@@ -575,8 +574,8 @@ class DifferentialEvolutionSolver(object):
                                     if self.disp:
                                         print(" Best updated: f(x)= %g"
                                               % (self.population_energies[0]))
-                                        print " at x= ",
-                                        print self._scale_parameters(self.population[0])
+                                        print(self._scale_parameters(self.population[0]))
+
                                     # exchange places between old and new global best    
                                     self.population[[0, itjob + self.njobs*itsp], :] =\
                                         self.population[[itjob + self.njobs*itsp, 0], :]
@@ -606,8 +605,8 @@ class DifferentialEvolutionSolver(object):
                                 if self.disp:
                                     print(" Best updated: f(x)= %g"
                                           % (self.population_energies[0]))
-                                    print " at x= ",
-                                    print self._scale_parameters(self.population[0])
+                                    print(self._scale_parameters(self.population[0]))
+
                                 # and exchange places of previous and new best solutions
                                 self.population[[0, candidate], :] = self.population[[candidate, 0], :]
             
@@ -626,8 +625,8 @@ class DifferentialEvolutionSolver(object):
             if self.disp:
                 print("differential_evolution step %d: f(x)= %g"
                       % (nit, self.population_energies[0]))
-                print " at x= ",
-                print self._scale_parameters(self.population[0])
+                print(self._scale_parameters(self.population[0]))
+
             
               
             # stop when the fractional s.d. of the population is less than tol
